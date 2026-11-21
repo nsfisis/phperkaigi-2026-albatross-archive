@@ -6,13 +6,12 @@ https://github.com/nsfisis/phperkaigi-2026-albatross のアーカイブ。
 
 サイト: https://t.nil.ninja/phperkaigi/2026/code-battle/
 
-
 ## ライセンス
 
 このリポジトリ中のファイルには、以下を除いて The MIT License が適用されます。
 
-* [public/favicon.svg](public/favicon.svg)
-* [public/logo.svg](public/logo.svg)
-* [public/files/img/ 以下のアイコンファイル](public/files/img/)
+- [public/favicon.svg](public/favicon.svg)
+- [public/logo.svg](public/logo.svg)
+- [public/files/img/ 以下のアイコンファイル](public/files/img/)
 
 ライセンス表記については [LICENSE](./LICENSE) をご覧ください。
