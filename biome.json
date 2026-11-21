@@ -16,8 +16,7 @@
       "!archives",
       "!dist",
       "!openapi",
-      "!package-lock.json",
-      "!stats.html"
+      "!package-lock.json"
     ]
   },
   "formatter": {
