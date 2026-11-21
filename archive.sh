@@ -48,3 +48,18 @@ fetch api/games/13/watch/ranking api/games/13/watch/ranking.json
 fetch api/games/14/watch/ranking api/games/14/watch/ranking.json
 fetch api/games/15/watch/ranking api/games/15/watch/ranking.json
 fetch api/tournaments/1          api/tournaments/1.json
+
+# Fix tournament results
+#
+#   user_id: 3=okashoi 5=tkooler-lufar 7=Lemnis 10=takaram 14=akamah
+jq -c '
+  (.tournament.entries | map({key: (.user.user_id | tostring), value: .user}) | from_entries) as $users
+  | .tournament.matches |= map(
+      if   .round == 0 and .position == 1 then .winner_user_id = 10 | .player1_score = 89  | .player2_score = 74
+      elif .round == 0 and .position == 3 then                          .player1_score = 71  | .player2_score = 50
+      elif .round == 1 and .position == 0 then .player2 = $users["10"] | .winner_user_id = 10 | .player1_score = 179 | .player2_score = 160
+      elif .round == 1 and .position == 1 then .winner_user_id = 7  | .player1_score = 268 | .player2_score = 367
+      elif .round == 2 and .position == 0 then .player1 = $users["10"] | .player2 = $users["7"] | .winner_user_id = 10 | .player1_score = 141 | .player2_score = 200
+      else . end)
+' archives/api/tournaments/1.json > archives/api/tournaments/1.json.tmp
+mv archives/api/tournaments/1.json.tmp archives/api/tournaments/1.json
