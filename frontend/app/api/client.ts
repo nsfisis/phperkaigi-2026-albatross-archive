@@ -12,28 +12,6 @@ const client = createClient<paths>({
   credentials: "include",
 });
 
-export async function apiLogin(username: string, password: string) {
-  const { data, error } = await client.POST("/login", {
-    body: {
-      username,
-      password,
-    },
-  });
-  if (error) throw new Error(error.message);
-  return data;
-}
-
-export async function apiLogout() {
-  const { error } = await client.POST("/logout");
-  if (error) throw new Error(error.message);
-}
-
-export async function apiGetMe() {
-  const { data, error } = await client.GET("/me");
-  if (error) return null;
-  return data;
-}
-
 class AuthenticatedApiClient {
   async getGames() {
     const { data, error } = await client.GET("/games");
@@ -47,53 +25,6 @@ class AuthenticatedApiClient {
         path: { game_id: gameId },
       },
     });
-    if (error) throw new Error(error.message);
-    return data;
-  }
-
-  async getGamePlayLatestState(gameId: number) {
-    const { data, error } = await client.GET(
-      "/games/{game_id}/play/latest_state",
-      {
-        params: {
-          path: { game_id: gameId },
-        },
-      },
-    );
-    if (error) throw new Error(error.message);
-    return data;
-  }
-
-  async postGamePlayCode(gameId: number, code: string) {
-    const { error } = await client.POST("/games/{game_id}/play/code", {
-      params: {
-        path: { game_id: gameId },
-      },
-      body: { code },
-    });
-    if (error) throw new Error(error.message);
-  }
-
-  async postGamePlaySubmit(gameId: number, code: string) {
-    const { data, error } = await client.POST("/games/{game_id}/play/submit", {
-      params: {
-        path: { game_id: gameId },
-      },
-      body: { code },
-    });
-    if (error) throw new Error(error.message);
-    return data;
-  }
-
-  async getGamePlaySubmissions(gameId: number) {
-    const { data, error } = await client.GET(
-      "/games/{game_id}/play/submissions",
-      {
-        params: {
-          path: { game_id: gameId },
-        },
-      },
-    );
     if (error) throw new Error(error.message);
     return data;
   }

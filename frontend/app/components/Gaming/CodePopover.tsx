@@ -1,7 +1,7 @@
 import { Popover } from "@base-ui-components/react/popover";
 import { faCode, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { calcCodeSize } from "../../states/play";
+import { calcCodeSize } from "../../states/watch";
 import type { SupportedLanguage } from "../../types/SupportedLanguage";
 import BorderedContainer from "../BorderedContainer";
 import CodeBlock from "../Gaming/CodeBlock";
