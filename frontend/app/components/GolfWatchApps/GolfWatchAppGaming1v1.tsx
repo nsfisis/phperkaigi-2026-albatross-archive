@@ -3,14 +3,12 @@ import {
   calcCodeSize,
   checkGameResultKind,
   gameStateKindAtom,
-  gamingLeftTimeSecondsAtom,
   latestGameStatesAtom,
 } from "../../states/watch";
 import type { PlayerProfile } from "../../types/PlayerProfile";
 import type { SupportedLanguage } from "../../types/SupportedLanguage";
 import FoldableBorderedContainerWithCaption from "../FoldableBorderedContainerWithCaption";
 import CodeBlock from "../Gaming/CodeBlock";
-import LeftTime from "../Gaming/LeftTime";
 import ProblemColumnContent from "../Gaming/ProblemColumnContent";
 import RankingTable from "../Gaming/RankingTable";
 import Score from "../Gaming/Score";
@@ -40,7 +38,6 @@ export default function GolfWatchAppGaming1v1({
   sampleCode,
 }: Props) {
   const gameStateKind = useAtomValue(gameStateKindAtom);
-  const leftTimeSeconds = useAtomValue(gamingLeftTimeSecondsAtom)!;
   const latestGameStates = useAtomValue(latestGameStatesAtom);
 
   const stateA =
@@ -87,18 +84,16 @@ export default function GolfWatchAppGaming1v1({
             <Score status={statusA} score={scoreA} />
           </div>
         </div>
-        <div className="font-bold text-center">
-          <div className="text-gray-100">{gameDisplayName}</div>
-          {gameResultKind ? (
-            <div className="text-3xl">
+        <div className="font-bold text-center my-auto">
+          <div className="text-3xl">{gameDisplayName}</div>
+          {gameResultKind && (
+            <div className="text-xl text-gray-100">
               {gameResultKind === "winA"
                 ? `勝者 ${playerProfileA!.displayName}`
                 : gameResultKind === "winB"
                   ? `勝者 ${playerProfileB!.displayName}`
                   : "引き分け"}
             </div>
-          ) : (
-            <LeftTime sec={leftTimeSeconds} />
           )}
         </div>
         <div className="font-bold flex gap-4 justify-end md:justify-between items-center my-auto">

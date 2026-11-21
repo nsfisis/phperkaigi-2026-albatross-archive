@@ -1,7 +1,4 @@
-import { useAtomValue } from "jotai";
-import { gamingLeftTimeSecondsAtom } from "../../states/watch";
 import type { SupportedLanguage } from "../../types/SupportedLanguage";
-import LeftTime from "../Gaming/LeftTime";
 import ProblemColumn from "../Gaming/ProblemColumn";
 import RankingTable from "../Gaming/RankingTable";
 import TitledColumn from "../TitledColumn";
@@ -22,17 +19,10 @@ export default function GolfWatchAppGamingMultiplayer({
   problemLanguage,
   sampleCode,
 }: Props) {
-  const leftTimeSeconds = useAtomValue(gamingLeftTimeSecondsAtom)!;
-
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      <div className="text-white bg-brand-600 grid grid-cols-3 px-4 py-2">
-        <div className="font-bold flex justify-between my-auto"></div>
-        <div className="font-bold text-center">
-          <div className="text-gray-100">{gameDisplayName}</div>
-          <LeftTime sec={leftTimeSeconds} />
-        </div>
-        <div className="font-bold flex justify-between my-auto"></div>
+      <div className="text-white bg-brand-600 px-4 py-4">
+        <div className="font-bold text-center text-3xl">{gameDisplayName}</div>
       </div>
       <TwoColumnLayout>
         <ProblemColumn
