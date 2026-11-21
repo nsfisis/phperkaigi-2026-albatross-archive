@@ -12,7 +12,7 @@
       "!.cache",
       "!**/.claude",
       "!app/api/schema.d.ts",
-      "!public/api",
+      "!data",
       "!dist",
       "!package-lock.json"
     ]

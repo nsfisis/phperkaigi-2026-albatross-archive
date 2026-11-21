@@ -1,20 +1,24 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./tailwind.css";
 import "./shiki.css";
 import App from "./App";
+import type { PageData } from "./pageData";
 
 config.autoAddCss = false;
 
 const root = document.getElementById("root");
-if (!root) {
-  throw new Error("Root element not found");
+const dataElement = document.getElementById("page-data");
+if (!root || !dataElement?.textContent) {
+  throw new Error("Prerendered page is broken");
 }
+const data = JSON.parse(dataElement.textContent) as PageData;
 
-createRoot(root).render(
+hydrateRoot(
+  root,
   <StrictMode>
-    <App />
+    <App data={data} />
   </StrictMode>,
 );

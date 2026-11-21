@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
-import { createApiClient } from "../api/client";
 import type { components } from "../api/schema";
 import BorderedContainer from "../components/BorderedContainer";
 import UserIcon from "../components/UserIcon";
-import { APP_NAME } from "../config";
-import { usePageTitle } from "../hooks/usePageTitle";
 
 type Tournament = components["schemas"]["Tournament"];
 type TournamentMatch = components["schemas"]["TournamentMatch"];
@@ -273,50 +269,10 @@ function standardBracketSeeds(bracketSize: number): number[] {
 }
 
 export default function TournamentPage({
-  tournamentId,
+  tournament,
 }: {
-  tournamentId: string;
+  tournament: Tournament;
 }) {
-  usePageTitle(`Tournament | ${APP_NAME}`);
-
-  const id = Number(tournamentId);
-  const isValidId = id > 0;
-
-  const [tournament, setTournament] = useState<Tournament | null>(null);
-  const [loading, setLoading] = useState(isValidId);
-  const [error, setError] = useState<string | null>(
-    isValidId ? null : "Invalid tournament ID",
-  );
-
-  useEffect(() => {
-    if (!isValidId) {
-      return;
-    }
-
-    const apiClient = createApiClient();
-    apiClient
-      .getTournament(id)
-      .then(({ tournament }) => setTournament(tournament))
-      .catch(() => setError("Failed to load tournament"))
-      .finally(() => setLoading(false));
-  }, [id, isValidId]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <p className="text-gray-500">Loading...</p>
-      </div>
-    );
-  }
-
-  if (error || !tournament) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <p className="text-red-500">{error || "Failed to load tournament"}</p>
-      </div>
-    );
-  }
-
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <div className="max-w-6xl mx-auto">

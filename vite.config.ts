@@ -4,5 +4,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   base: "/phperkaigi/2026/code-battle/",
+  appType: "mpa",
   plugins: [tailwindcss(), react()],
 });

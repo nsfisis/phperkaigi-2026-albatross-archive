@@ -1,11 +1,8 @@
 import BorderedContainer from "../components/BorderedContainer";
 import NavigateLink from "../components/NavigateLink";
-import { APP_NAME, BASE_PATH } from "../config";
-import { usePageTitle } from "../hooks/usePageTitle";
+import { BASE_PATH } from "../config";
 
 export default function IndexPage() {
-  usePageTitle(APP_NAME);
-
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center gap-y-6">
       <img
@@ -37,8 +34,8 @@ export default function IndexPage() {
               の会期中は提出が可能でした。閲覧できるのは最終的な提出コードで、コードバトルの場で書いたものとは異なる場合があります）。
             </p>
             <div className="mt-4 flex justify-center gap-4">
-              <NavigateLink to="/dashboard">問題一覧</NavigateLink>
-              <NavigateLink to="/tournament/1">トーナメント結果</NavigateLink>
+              <NavigateLink to="/dashboard/">問題一覧</NavigateLink>
+              <NavigateLink to="/tournament/1/">トーナメント結果</NavigateLink>
             </div>
           </div>
         </BorderedContainer>
