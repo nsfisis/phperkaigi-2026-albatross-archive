@@ -1,4 +1,4 @@
-DOCKER_COMPOSE := docker compose -f compose.prod.yaml
+DOCKER_COMPOSE := docker compose
 
 .PHONY: build
 build:
