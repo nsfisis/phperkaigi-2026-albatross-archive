@@ -13,6 +13,6 @@ https://github.com/nsfisis/phperkaigi-2026-albatross のアーカイブ。
 
 * [public/favicon.svg](public/favicon.svg)
 * [public/logo.svg](public/logo.svg)
-* [archives/files/img/ 以下のアイコンファイル](archives/files/img/)
+* [public/files/img/ 以下のアイコンファイル](public/files/img/)
 
 ライセンス表記については [LICENSE](./LICENSE) をご覧ください。

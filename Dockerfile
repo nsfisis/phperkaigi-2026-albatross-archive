@@ -15,7 +15,6 @@ RUN npm run build
 FROM nginx:1.30.7-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY archives/ /var/www/archives/
 COPY --from=builder /app/dist /var/www/phperkaigi/2026/code-battle
 
 EXPOSE 80

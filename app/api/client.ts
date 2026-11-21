@@ -1,7 +1,7 @@
 import { API_BASE_PATH } from "../config";
 import type { components } from "./schema";
 
-// The API responses are archived as static JSON files (see /archive.sh).
+// The API responses are archived as static JSON files in public/api (see /archive.sh).
 
 type Schemas = components["schemas"];
 

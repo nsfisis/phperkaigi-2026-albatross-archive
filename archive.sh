@@ -4,7 +4,7 @@ set -euo pipefail
 BASE_URL="https://t.nil.ninja/phperkaigi/2026/code-battle"
 
 fetch() {
-  curl -fsS --create-dirs -o "archives/$2" "$BASE_URL/$1"
+  curl -fsS --create-dirs -o "public/$2" "$BASE_URL/$1"
 }
 
 # Icons
@@ -61,13 +61,13 @@ jq -c '
       elif .round == 1 and .position == 1 then .winner_user_id = 7  | .player1_score = 268 | .player2_score = 367
       elif .round == 2 and .position == 0 then .player1 = $users["10"] | .player2 = $users["7"] | .winner_user_id = 10 | .player1_score = 141 | .player2_score = 200
       else . end)
-' archives/api/tournaments/1.json > archives/api/tournaments/1.json.tmp
-mv archives/api/tournaments/1.json.tmp archives/api/tournaments/1.json
+' public/api/tournaments/1.json > public/api/tournaments/1.json.tmp
+mv public/api/tournaments/1.json.tmp public/api/tournaments/1.json
 
 # Rewrite labels of tournament participants
 #
 #   user_id: 2=ShotaArima 3=okashoi 5=tkooler-lufar 7=Lemnis 10=takaram 14=akamah
-grep -rlE '"user_id":(2|3|5|7|10|14),' archives/api | sort | while read -r f; do
+grep -rlE '"user_id":(2|3|5|7|10|14),' public/api | sort | while read -r f; do
   jq -c '
     {"10": "優勝", "7": "準優勝", "3": "ベスト4", "14": "ベスト4", "5": "ベスト6", "2": "ベスト6"} as $labels
     | walk(
