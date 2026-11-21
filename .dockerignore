@@ -1,5 +1,4 @@
 .git
-backend/
-node_modules/
-worker/swift/
 .env
+dist
+node_modules

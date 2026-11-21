@@ -1,27 +1,18 @@
 # PHPerKaigi 2026 Albatross
 
+https://github.com/nsfisis/phperkaigi-2026-albatross のアーカイブ。
 
-# これは何？
+元々は PHPerKaigi 2026 向けに作られた PHP 等によるコードゴルフサイトでしたが、カンファレンス終了に伴って運用を停止したため静的サイトとしてアーカイブしました。
 
-2026-03-20 から 2026-03-22 にかけて開催される [PHPerKaigi 2026](https://phperkaigi.jp/2026/) の中の企画、PHPer コードバトルのシステムです。
-
-[サイトはこちら (現在プレイできるのは、予選イベントに参加している方のみです)](https://t.nil.ninja/phperkaigi/2026/code-battle/)
-
-
-# サンドボックス化の仕組み
-
-ユーザから任意のコードを受け付ける関係上、何も対策をしないと深刻な脆弱性を抱えてしまいます。
-
-このシステムでは、送信されたコードを WebAssembly へ変換された PHP 処理系で実行することで、サンドボックス化を実現しています。
+サイト: https://t.nil.ninja/phperkaigi/2026/code-battle/
 
 
-# License
+## ライセンス
 
-The contents of the repository are licensed under The MIT License, except for
+このリポジトリ中のファイルには、以下を除いて The MIT License が適用されます。
 
-* [backend/admin/assets/css/normalize.css](backend/admin/assets/css/normalize.css),
-* [backend/admin/assets/css/sakura.css](backend/admin/assets/css/sakura.css),
-* [frontend/public/favicon.svg](frontend/public/favicon.svg) and
-* [frontend/public/logo.svg](frontend/public/logo.svg).
+* [public/favicon.svg](public/favicon.svg)
+* [public/logo.svg](public/logo.svg)
+* [archives/files/img/ 以下のアイコンファイル](archives/files/img/)
 
-See [LICENSE](./LICENSE) for copylight notice.
+ライセンス表記については [LICENSE](./LICENSE) をご覧ください。

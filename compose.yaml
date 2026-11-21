@@ -1,0 +1,9 @@
+services:
+  albatross:
+    build:
+      context: .
+      args:
+        ALBATROSS_BASE_PATH: $ALBATROSS_BASE_PATH
+    ports:
+      - '127.0.0.1:8007:80'
+    restart: always

@@ -1,8 +1,0 @@
-check:
-    go build -o /dev/null ./...
-    go tool golangci-lint run
-
-test:
-    go test ./...
-
-ci: check test
