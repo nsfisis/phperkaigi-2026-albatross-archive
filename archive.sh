@@ -63,3 +63,17 @@ jq -c '
       else . end)
 ' archives/api/tournaments/1.json > archives/api/tournaments/1.json.tmp
 mv archives/api/tournaments/1.json.tmp archives/api/tournaments/1.json
+
+# Rewrite labels of tournament participants
+#
+#   user_id: 2=ShotaArima 3=okashoi 5=tkooler-lufar 7=Lemnis 10=takaram 14=akamah
+grep -rlE '"user_id":(2|3|5|7|10|14),' archives/api | sort | while read -r f; do
+  jq -c '
+    {"10": "優勝", "7": "準優勝", "3": "ベスト4", "14": "ベスト4", "5": "ベスト6", "2": "ベスト6"} as $labels
+    | walk(
+        if type == "object" and has("user_id") and has("label")
+        then .label = ($labels[.user_id | tostring] // .label)
+        else . end)
+  ' "$f" > "$f.tmp"
+  mv "$f.tmp" "$f"
+done
