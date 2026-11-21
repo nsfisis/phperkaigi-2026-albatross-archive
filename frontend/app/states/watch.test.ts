@@ -3,27 +3,14 @@ import { describe, expect, test } from "vitest";
 import {
   calcCodeSize,
   checkGameResultKind,
-  gameStateKindAtom,
-  gamingLeftTimeSecondsAtom,
   latestGameStatesAtom,
   rankingAtom,
-  setCurrentTimestampAtom,
-  setDurationSecondsAtom,
-  setGameStartedAtAtom,
   setLatestGameStatesAtom,
-  startingLeftTimeSecondsAtom,
 } from "./watch";
 
 describe("checkGameResultKind", () => {
-  test("returns null when game is not finished", () => {
-    expect(checkGameResultKind("gaming", null, null)).toBeNull();
-    expect(checkGameResultKind("waiting", null, null)).toBeNull();
-    expect(checkGameResultKind("starting", null, null)).toBeNull();
-    expect(checkGameResultKind("loading", null, null)).toBeNull();
-  });
-
   test("returns draw when both scores are null", () => {
-    expect(checkGameResultKind("finished", null, null)).toBe("draw");
+    expect(checkGameResultKind(null, null)).toBe("draw");
   });
 
   test("returns draw when both states have null scores", () => {
@@ -39,7 +26,7 @@ describe("checkGameResultKind", () => {
       score: null,
       best_score_submitted_at: null,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("draw");
+    expect(checkGameResultKind(stateA, stateB)).toBe("draw");
   });
 
   test("returns winB when only A has null score", () => {
@@ -55,7 +42,7 @@ describe("checkGameResultKind", () => {
       score: 10,
       best_score_submitted_at: 1000,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winB");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winB");
   });
 
   test("returns winA when only B has null score", () => {
@@ -71,7 +58,7 @@ describe("checkGameResultKind", () => {
       score: null,
       best_score_submitted_at: null,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winA");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winA");
   });
 
   test("returns winA when A has lower score (code golf)", () => {
@@ -87,7 +74,7 @@ describe("checkGameResultKind", () => {
       score: 10,
       best_score_submitted_at: 1000,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winA");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winA");
   });
 
   test("returns winB when B has lower score (code golf)", () => {
@@ -103,7 +90,7 @@ describe("checkGameResultKind", () => {
       score: 5,
       best_score_submitted_at: 1000,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winB");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winB");
   });
 
   test("breaks tie by earlier submission time - A wins", () => {
@@ -119,7 +106,7 @@ describe("checkGameResultKind", () => {
       score: 10,
       best_score_submitted_at: 1060,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winA");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winA");
   });
 
   test("breaks tie by earlier submission time - B wins", () => {
@@ -135,7 +122,7 @@ describe("checkGameResultKind", () => {
       score: 10,
       best_score_submitted_at: 1000,
     };
-    expect(checkGameResultKind("finished", stateA, stateB)).toBe("winB");
+    expect(checkGameResultKind(stateA, stateB)).toBe("winB");
   });
 });
 
@@ -147,29 +134,6 @@ describe("watch calcCodeSize", () => {
 });
 
 describe("watch Jotai atoms", () => {
-  test("gameStateKindAtom returns 'loading' initially", () => {
-    const store = createStore();
-    expect(store.get(gameStateKindAtom)).toBe("loading");
-  });
-
-  test("gameStateKindAtom transitions through states correctly", () => {
-    const store = createStore();
-    const now = Math.floor(Date.now() / 1000);
-
-    store.set(setCurrentTimestampAtom);
-    expect(store.get(gameStateKindAtom)).toBe("waiting");
-
-    store.set(setGameStartedAtAtom, now + 60);
-    store.set(setDurationSecondsAtom, 300);
-    expect(store.get(gameStateKindAtom)).toBe("starting");
-
-    store.set(setGameStartedAtAtom, now - 10);
-    expect(store.get(gameStateKindAtom)).toBe("gaming");
-
-    store.set(setGameStartedAtAtom, now - 400);
-    expect(store.get(gameStateKindAtom)).toBe("finished");
-  });
-
   test("rankingAtom is empty initially", () => {
     const store = createStore();
     expect(store.get(rankingAtom)).toEqual([]);
@@ -192,15 +156,5 @@ describe("watch Jotai atoms", () => {
     };
     store.set(setLatestGameStatesAtom, states);
     expect(store.get(latestGameStatesAtom)).toEqual(states);
-  });
-
-  test("startingLeftTimeSecondsAtom returns null initially", () => {
-    const store = createStore();
-    expect(store.get(startingLeftTimeSecondsAtom)).toBeNull();
-  });
-
-  test("gamingLeftTimeSecondsAtom returns null initially", () => {
-    const store = createStore();
-    expect(store.get(gamingLeftTimeSecondsAtom)).toBeNull();
   });
 });

@@ -1,5 +1,4 @@
 import createClient from "openapi-fetch";
-import { createContext } from "react";
 import { API_BASE_PATH } from "../config";
 import type { paths } from "./schema";
 
@@ -68,7 +67,3 @@ const apiClient = new AuthenticatedApiClient();
 export function createApiClient() {
   return apiClient;
 }
-
-export const ApiClientContext = createContext<AuthenticatedApiClient | null>(
-  null,
-);

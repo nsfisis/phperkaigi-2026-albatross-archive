@@ -2,7 +2,6 @@ import { useAtomValue } from "jotai";
 import {
   calcCodeSize,
   checkGameResultKind,
-  gameStateKindAtom,
   latestGameStatesAtom,
 } from "../../states/watch";
 import type { PlayerProfile } from "../../types/PlayerProfile";
@@ -37,7 +36,6 @@ export default function GolfWatchAppGaming1v1({
   problemLanguage,
   sampleCode,
 }: Props) {
-  const gameStateKind = useAtomValue(gameStateKindAtom);
   const latestGameStates = useAtomValue(latestGameStatesAtom);
 
   const stateA =
@@ -54,15 +52,14 @@ export default function GolfWatchAppGaming1v1({
   const codeSizeA = calcCodeSize(codeA, problemLanguage);
   const codeSizeB = calcCodeSize(codeB, problemLanguage);
 
-  const gameResultKind = checkGameResultKind(gameStateKind, stateA, stateB);
+  const gameResultKind = checkGameResultKind(stateA, stateB);
 
-  const topBg = gameResultKind
-    ? gameResultKind === "winA"
+  const topBg =
+    gameResultKind === "winA"
       ? "bg-orange-400"
       : gameResultKind === "winB"
         ? "bg-purple-400"
-        : "bg-brand-600"
-    : "bg-brand-600";
+        : "bg-brand-600";
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
@@ -86,15 +83,13 @@ export default function GolfWatchAppGaming1v1({
         </div>
         <div className="font-bold text-center my-auto">
           <div className="text-3xl">{gameDisplayName}</div>
-          {gameResultKind && (
-            <div className="text-xl text-gray-100">
-              {gameResultKind === "winA"
-                ? `勝者 ${playerProfileA!.displayName}`
-                : gameResultKind === "winB"
-                  ? `勝者 ${playerProfileB!.displayName}`
-                  : "引き分け"}
-            </div>
-          )}
+          <div className="text-xl text-gray-100">
+            {gameResultKind === "winA"
+              ? `勝者 ${playerProfileA!.displayName}`
+              : gameResultKind === "winB"
+                ? `勝者 ${playerProfileB!.displayName}`
+                : "引き分け"}
+          </div>
         </div>
         <div className="font-bold flex gap-4 justify-end md:justify-between items-center my-auto">
           <div className="text-2xl md:text-6xl">

@@ -1,6 +1,6 @@
 import { createStore, Provider as JotaiProvider } from "jotai";
 import { useEffect, useMemo, useState } from "react";
-import { ApiClientContext, createApiClient } from "../api/client";
+import { createApiClient } from "../api/client";
 import type { components } from "../api/schema";
 import GolfWatchApp from "../components/GolfWatchApp";
 import { APP_NAME } from "../config";
@@ -66,14 +66,12 @@ export default function GolfWatchPage({ gameId }: { gameId: string }) {
 
   return (
     <JotaiProvider store={store}>
-      <ApiClientContext.Provider value={createApiClient()}>
-        <GolfWatchApp
-          key={game.game_id}
-          game={game}
-          initialGameStates={gameStates}
-          initialRanking={ranking}
-        />
-      </ApiClientContext.Provider>
+      <GolfWatchApp
+        key={game.game_id}
+        game={game}
+        initialGameStates={gameStates}
+        initialRanking={ranking}
+      />
     </JotaiProvider>
   );
 }
