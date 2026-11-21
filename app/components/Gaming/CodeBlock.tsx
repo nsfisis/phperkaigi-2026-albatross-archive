@@ -22,6 +22,7 @@ export default function CodeBlock({ code, html }: Props) {
     <div className="relative">
       {code !== "" && (
         <button
+          type="button"
           onClick={handleCopy}
           className="absolute top-2 right-2 z-10 px-2 py-1 bg-white border border-gray-300 rounded shadow-md hover:bg-gray-100 transition-colors"
           title="コードをコピーする"

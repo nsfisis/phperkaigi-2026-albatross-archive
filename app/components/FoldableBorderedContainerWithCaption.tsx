@@ -1,6 +1,7 @@
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import BorderedContainer from "./BorderedContainer";
 
 type Props = {
@@ -27,6 +28,7 @@ export default function FoldableBorderedContainerWithCaption({
           </div>
           <div className="flex-shrink-0">
             <button
+              type="button"
               onClick={handleToggle}
               className="p-1 bg-gray-50 border-1 border-gray-300 rounded-sm"
             >

@@ -14,7 +14,8 @@
       "!app/api/schema.d.ts",
       "!data",
       "!dist",
-      "!package-lock.json"
+      "!package-lock.json",
+      "!public"
     ]
   },
   "formatter": {
@@ -29,7 +30,12 @@
     }
   },
   "linter": {
-    "enabled": false
+    "enabled": true,
+    "rules": {
+      "style": {
+        "noNonNullAssertion": "off"
+      }
+    }
   },
   "javascript": {
     "formatter": {
