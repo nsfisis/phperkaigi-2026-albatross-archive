@@ -7,15 +7,11 @@ import { APP_NAME } from "../config";
 import { usePageTitle } from "../hooks/usePageTitle";
 
 type Game = components["schemas"]["Game"];
-type LatestGameState = components["schemas"]["LatestGameState"];
 type RankingEntry = components["schemas"]["RankingEntry"];
 
 export default function GolfWatchPage({ gameId }: { gameId: string }) {
   const [game, setGame] = useState<Game | null>(null);
   const [ranking, setRanking] = useState<RankingEntry[]>([]);
-  const [gameStates, setGameStates] = useState<{
-    [key: string]: LatestGameState;
-  }>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -32,12 +28,10 @@ export default function GolfWatchPage({ gameId }: { gameId: string }) {
     Promise.all([
       apiClient.getGame(gameIdNum),
       apiClient.getGameWatchRanking(gameIdNum),
-      apiClient.getGameWatchLatestStates(gameIdNum),
     ])
-      .then(([{ game }, { ranking }, { states }]) => {
+      .then(([{ game }, { ranking }]) => {
         setGame(game);
         setRanking(ranking);
-        setGameStates(states);
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
@@ -66,12 +60,7 @@ export default function GolfWatchPage({ gameId }: { gameId: string }) {
 
   return (
     <JotaiProvider store={store}>
-      <GolfWatchApp
-        key={game.game_id}
-        game={game}
-        initialGameStates={gameStates}
-        initialRanking={ranking}
-      />
+      <GolfWatchApp key={game.game_id} game={game} initialRanking={ranking} />
     </JotaiProvider>
   );
 }
