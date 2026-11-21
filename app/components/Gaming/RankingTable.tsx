@@ -34,7 +34,9 @@ export default function RankingTable({ ranking }: Props) {
           </DataTableCell>
           {showCode && (
             <DataTableCell>
-              {entry.code && <CodePopover code={entry.code} />}
+              {entry.code != null && entry.code_html != null && (
+                <CodePopover code={entry.code} html={entry.code_html} />
+              )}
             </DataTableCell>
           )}
         </tr>

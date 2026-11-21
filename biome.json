@@ -12,7 +12,6 @@
       "!.cache",
       "!**/.claude",
       "!app/api/schema.d.ts",
-      "!app/shiki.bundle.ts",
       "!public/api",
       "!dist",
       "!package-lock.json"

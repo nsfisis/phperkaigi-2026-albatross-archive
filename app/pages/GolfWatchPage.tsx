@@ -58,6 +58,7 @@ export default function GolfWatchPage({ gameId }: { gameId: string }) {
       problemTitle={game.problem.title}
       problemDescription={game.problem.description}
       sampleCode={game.problem.sample_code}
+      sampleCodeHtml={game.problem.sample_code_html}
       ranking={ranking}
     />
   );

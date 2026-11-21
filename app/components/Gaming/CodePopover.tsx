@@ -7,9 +7,10 @@ import CodeBlock from "../Gaming/CodeBlock";
 
 type Props = {
   code: string;
+  html: string;
 };
 
-export default function CodePopover({ code }: Props) {
+export default function CodePopover({ code, html }: Props) {
   const codeSize = calcCodeSize(code);
 
   return (
@@ -33,7 +34,7 @@ export default function CodePopover({ code }: Props) {
                   />
                 </Popover.Close>
               </div>
-              <CodeBlock code={code} />
+              <CodeBlock code={code} html={html} />
             </BorderedContainer>
           </Popover.Popup>
         </Popover.Positioner>
