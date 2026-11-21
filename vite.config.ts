@@ -4,7 +4,6 @@ import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 const archivesDir = fileURLToPath(new URL("./archives", import.meta.url));
 
@@ -51,5 +50,5 @@ function serveArchives(): Plugin {
 
 export default defineConfig({
   base: "/phperkaigi/2026/code-battle/",
-  plugins: [tailwindcss(), react(), tsconfigPaths(), serveArchives()],
+  plugins: [tailwindcss(), react(), serveArchives()],
 });
