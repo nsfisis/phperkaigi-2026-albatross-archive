@@ -11,8 +11,8 @@ https://github.com/nsfisis/phperkaigi-2026-albatross のアーカイブ。
 
 このリポジトリ中のファイルには、以下を除いて The MIT License が適用されます。
 
-* [frontend/public/favicon.svg](frontend/public/favicon.svg)
-* [frontend/public/logo.svg](frontend/public/logo.svg)
+* [public/favicon.svg](public/favicon.svg)
+* [public/logo.svg](public/logo.svg)
 * [archives/files/img/ 以下のアイコンファイル](archives/files/img/)
 
 ライセンス表記については [LICENSE](./LICENSE) をご覧ください。

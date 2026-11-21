@@ -6,18 +6,19 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package.json package-lock.json ./
-COPY frontend/package.json frontend/
-RUN npm install -w frontend --include=dev
+RUN npm ci --include=dev
 
-COPY frontend/ frontend/
+COPY index.html tsconfig.json vite.config.ts ./
+COPY app/ app/
+COPY public/ public/
 ENV ALBATROSS_BASE_PATH="$ALBATROSS_BASE_PATH"
-RUN npm -w frontend run build
+RUN npm run build
 
 ################################################################################
 FROM nginx:1.27-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY archives/ /var/www/archives/
-COPY --from=builder /app/frontend/dist /var/www/phperkaigi/2026/code-battle-archive
+COPY --from=builder /app/dist /var/www/phperkaigi/2026/code-battle-archive
 
 EXPOSE 80

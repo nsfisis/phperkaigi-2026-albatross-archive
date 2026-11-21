@@ -18,6 +18,5 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - uses: extractions/setup-just@v2
-      - run: npm ci -w frontend
+      - run: npm ci
       - run: just ci
-        working-directory: frontend

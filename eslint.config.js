@@ -7,7 +7,7 @@ import globals from "globals";
 import ts from "typescript-eslint";
 
 export default defineConfig(
-  globalIgnores(["node_modules/", "dist/"]),
+  globalIgnores(["node_modules/", "dist/", "archives/"]),
   js.configs.recommended,
   ts.configs.recommended,
   react.configs.flat.recommended,

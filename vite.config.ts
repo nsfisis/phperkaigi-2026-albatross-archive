@@ -7,7 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig, type Plugin } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const archivesDir = fileURLToPath(new URL("../archives", import.meta.url));
+const archivesDir = fileURLToPath(new URL("./archives", import.meta.url));
 
 const contentTypes: Record<string, string> = {
   ".json": "application/json",
@@ -15,7 +15,7 @@ const contentTypes: Record<string, string> = {
   ".jpg": "image/jpeg",
 };
 
-// Serve ../archives/{api,files} under the base path in the dev server.
+// Serve ./archives/{api,files} under the base path in the dev server.
 // In production, nginx serves them instead (see /nginx.conf).
 function serveArchives(): Plugin {
   return {

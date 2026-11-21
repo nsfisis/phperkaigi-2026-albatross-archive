@@ -10,9 +10,14 @@
     "includes": [
       "**",
       "!.cache",
+      "!**/.claude",
       "!app/api/schema.d.ts",
       "!app/shiki.bundle.ts",
-      "!dist"
+      "!archives",
+      "!dist",
+      "!openapi",
+      "!package-lock.json",
+      "!stats.html"
     ]
   },
   "formatter": {
