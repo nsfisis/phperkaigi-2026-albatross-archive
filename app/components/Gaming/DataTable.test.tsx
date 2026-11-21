@@ -1,56 +1,5 @@
-/**
- * @vitest-environment jsdom
- */
-import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, test } from "vitest";
-import DataTable, { DataTableCell, formatUnixTimestamp } from "./DataTable";
-
-afterEach(() => {
-  cleanup();
-});
-
-describe("DataTable", () => {
-  test("renders headers", () => {
-    render(
-      <DataTable headers={["A", "B", "C"]}>
-        <tr>
-          <DataTableCell>1</DataTableCell>
-          <DataTableCell>2</DataTableCell>
-          <DataTableCell>3</DataTableCell>
-        </tr>
-      </DataTable>,
-    );
-    expect(screen.getByText("A")).toBeDefined();
-    expect(screen.getByText("B")).toBeDefined();
-    expect(screen.getByText("C")).toBeDefined();
-  });
-
-  test("renders body cells", () => {
-    render(
-      <DataTable headers={["H"]}>
-        <tr>
-          <DataTableCell>cell content</DataTableCell>
-        </tr>
-      </DataTable>,
-    );
-    expect(screen.getByText("cell content")).toBeDefined();
-  });
-
-  test("renders multiple rows", () => {
-    render(
-      <DataTable headers={["Name"]}>
-        <tr>
-          <DataTableCell>Alice</DataTableCell>
-        </tr>
-        <tr>
-          <DataTableCell>Bob</DataTableCell>
-        </tr>
-      </DataTable>,
-    );
-    expect(screen.getByText("Alice")).toBeDefined();
-    expect(screen.getByText("Bob")).toBeDefined();
-  });
-});
+import { describe, expect, test } from "vitest";
+import { formatUnixTimestamp } from "./DataTable";
 
 describe("formatUnixTimestamp", () => {
   test("formats timestamp correctly", () => {

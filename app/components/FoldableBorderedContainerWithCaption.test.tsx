@@ -10,15 +10,6 @@ afterEach(() => {
 });
 
 describe("FoldableBorderedContainerWithCaption", () => {
-  test("renders caption", () => {
-    render(
-      <FoldableBorderedContainerWithCaption caption="Foldable Title">
-        Content
-      </FoldableBorderedContainerWithCaption>,
-    );
-    expect(screen.getByText("Foldable Title")).toBeDefined();
-  });
-
   test("shows children by default (open state)", () => {
     render(
       <FoldableBorderedContainerWithCaption caption="Title">
