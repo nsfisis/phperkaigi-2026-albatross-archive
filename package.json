@@ -3,7 +3,6 @@
   "private": true,
   "workspaces": [
     "frontend",
-    "typespec",
-    "worker/php"
+    "typespec"
   ]
 }

@@ -2,8 +2,8 @@
   "name": "albatross-typespec",
   "private": true,
   "scripts": {
-    "build": "tsp compile api-server/ && tsp compile fortee/ && npm run copy-output",
-    "copy-output": "cp api-server/tsp-output/@typespec/openapi3/openapi.yaml ../openapi/api-server.yaml && cp fortee/tsp-output/@typespec/openapi3/openapi.yaml ../openapi/fortee.yaml"
+    "build": "tsp compile api-server/ && npm run copy-output",
+    "copy-output": "cp api-server/tsp-output/@typespec/openapi3/openapi.yaml ../openapi/api-server.yaml"
   },
   "dependencies": {
     "@typespec/compiler": "^1.9.0",
