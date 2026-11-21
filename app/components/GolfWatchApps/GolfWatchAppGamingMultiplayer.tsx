@@ -1,8 +1,11 @@
+import type { components } from "../../api/schema";
 import type { SupportedLanguage } from "../../types/SupportedLanguage";
 import ProblemColumn from "../Gaming/ProblemColumn";
 import RankingTable from "../Gaming/RankingTable";
 import TitledColumn from "../TitledColumn";
 import TwoColumnLayout from "../TwoColumnLayout";
+
+type RankingEntry = components["schemas"]["RankingEntry"];
 
 type Props = {
   gameDisplayName: string;
@@ -10,6 +13,7 @@ type Props = {
   problemDescription: string;
   problemLanguage: SupportedLanguage;
   sampleCode: string;
+  ranking: RankingEntry[];
 };
 
 export default function GolfWatchAppGamingMultiplayer({
@@ -18,6 +22,7 @@ export default function GolfWatchAppGamingMultiplayer({
   problemDescription,
   problemLanguage,
   sampleCode,
+  ranking,
 }: Props) {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
@@ -32,7 +37,7 @@ export default function GolfWatchAppGamingMultiplayer({
           sampleCode={sampleCode}
         />
         <TitledColumn title="順位表">
-          <RankingTable problemLanguage={problemLanguage} />
+          <RankingTable ranking={ranking} problemLanguage={problemLanguage} />
         </TitledColumn>
       </TwoColumnLayout>
     </div>

@@ -1,10 +1,4 @@
-import { atom } from "jotai";
-import type { components } from "../api/schema";
-import type { SupportedLanguage } from "../types/SupportedLanguage";
-
-type RankingEntry = components["schemas"]["RankingEntry"];
-
-export const rankingAtom = atom<RankingEntry[]>([]);
+import type { SupportedLanguage } from "./types/SupportedLanguage";
 
 function cleanCode(code: string, language: SupportedLanguage) {
   if (language === "php") {

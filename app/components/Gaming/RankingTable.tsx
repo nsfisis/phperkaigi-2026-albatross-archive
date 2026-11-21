@@ -1,15 +1,16 @@
-import { useAtomValue } from "jotai";
-import { rankingAtom } from "../../states/watch";
+import type { components } from "../../api/schema";
 import type { SupportedLanguage } from "../../types/SupportedLanguage";
 import CodePopover from "./CodePopover";
 import DataTable, { DataTableCell, formatUnixTimestamp } from "./DataTable";
 
+type RankingEntry = components["schemas"]["RankingEntry"];
+
 type Props = {
+  ranking: RankingEntry[];
   problemLanguage: SupportedLanguage;
 };
 
-export default function RankingTable({ problemLanguage }: Props) {
-  const ranking = useAtomValue(rankingAtom);
+export default function RankingTable({ ranking, problemLanguage }: Props) {
   const showCode = ranking.some((entry) => entry.code != null);
 
   return (
