@@ -51,7 +51,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex gap-2">
                     <NavigateLink to={`/golf/${game.game_id}/watch`}>
-                      観戦
+                      結果を見る
                     </NavigateLink>
                   </div>
                 </li>
