@@ -11,9 +11,6 @@
     "check:ts": "tsc --noEmit",
     "dev": "vite",
     "test": "vitest run",
-    "gen": "npm run typespec && npm run openapi-typescript",
-    "typespec": "tsp compile typespec/ && cp typespec/tsp-output/@typespec/openapi3/openapi.yaml openapi/api-server.yaml",
-    "openapi-typescript": "openapi-typescript --output ./app/api/schema.d.ts ./openapi/api-server.yaml",
     "shiki-codegen": "shiki-codegen --langs php,swift --themes github-light --engine javascript ./app/shiki.bundle.ts"
   },
   "dependencies": {
@@ -37,9 +34,6 @@
     "@types/node": "^25.2.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@typespec/compiler": "^1.9.0",
-    "@typespec/http": "^1.9.0",
-    "@typespec/openapi3": "^1.9.0",
     "@vitejs/plugin-react": "^5.1.4",
     "eslint": "^9.39.2",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -47,7 +41,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.3.0",
     "jsdom": "^28.1.0",
-    "openapi-typescript": "^7.13.0",
     "shiki-codegen": "^3.22.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",

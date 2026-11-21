@@ -15,7 +15,6 @@
       "!app/shiki.bundle.ts",
       "!archives",
       "!dist",
-      "!openapi",
       "!package-lock.json"
     ]
   },
