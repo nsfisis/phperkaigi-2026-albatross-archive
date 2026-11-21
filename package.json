@@ -11,7 +11,7 @@
     "check:ts": "tsc --noEmit",
     "dev": "vite",
     "test": "vitest run",
-    "shiki-codegen": "shiki-codegen --langs php,swift --themes github-light --engine javascript ./app/shiki.bundle.ts"
+    "shiki-codegen": "shiki-codegen --langs php --themes github-light --engine javascript ./app/shiki.bundle.ts"
   },
   "dependencies": {
     "@base-ui-components/react": "^1.0.0-rc.0",

@@ -1,5 +1,4 @@
 import type { components } from "../../api/schema";
-import type { SupportedLanguage } from "../../types/SupportedLanguage";
 import CodePopover from "./CodePopover";
 import DataTable, { DataTableCell, formatUnixTimestamp } from "./DataTable";
 
@@ -7,10 +6,9 @@ type RankingEntry = components["schemas"]["RankingEntry"];
 
 type Props = {
   ranking: RankingEntry[];
-  problemLanguage: SupportedLanguage;
 };
 
-export default function RankingTable({ ranking, problemLanguage }: Props) {
+export default function RankingTable({ ranking }: Props) {
   const showCode = ranking.some((entry) => entry.code != null);
 
   return (
@@ -36,9 +34,7 @@ export default function RankingTable({ ranking, problemLanguage }: Props) {
           </DataTableCell>
           {showCode && (
             <DataTableCell>
-              {entry.code && (
-                <CodePopover code={entry.code} language={problemLanguage} />
-              )}
+              {entry.code && <CodePopover code={entry.code} />}
             </DataTableCell>
           )}
         </tr>

@@ -1,16 +1,14 @@
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { Fragment, type JSX } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { type BundledLanguage, codeToHast } from "./shiki.bundle";
-
-export type { BundledLanguage };
+import { codeToHast } from "./shiki.bundle";
 
 // https://shiki.matsu.io/packages/next
-export async function highlight(code: string, lang: BundledLanguage) {
+export async function highlight(code: string) {
   let out;
   try {
     out = await codeToHast(code.trimEnd(), {
-      lang,
+      lang: "php",
       theme: "github-light",
     });
   } catch {

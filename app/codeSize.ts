@@ -1,22 +1,13 @@
-import type { SupportedLanguage } from "./types/SupportedLanguage";
-
-function cleanCode(code: string, language: SupportedLanguage) {
-  if (language === "php") {
-    return code
-      .replace(/\s+/g, "")
-      .replace(/^<\?php/, "")
-      .replace(/^<\?/, "")
-      .replace(/\?>$/, "");
-  } else {
-    return code.replace(/\s+/g, "");
-  }
+function cleanCode(code: string) {
+  return code
+    .replace(/\s+/g, "")
+    .replace(/^<\?php/, "")
+    .replace(/^<\?/, "")
+    .replace(/\?>$/, "");
 }
 
-export function calcCodeSize(
-  code: string,
-  language: SupportedLanguage,
-): number {
-  const trimmed = cleanCode(code, language);
+export function calcCodeSize(code: string): number {
+  const trimmed = cleanCode(code);
   const utf8Encoded = new TextEncoder().encode(trimmed);
   return utf8Encoded.length;
 }

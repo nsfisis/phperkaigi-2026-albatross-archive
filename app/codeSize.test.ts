@@ -3,7 +3,7 @@ import { calcCodeSize } from "./codeSize";
 
 describe("calcCodeSize", () => {
   test("ignores whitespace and PHP open tag", () => {
-    expect(calcCodeSize("<?php echo 1;", "php")).toBe(6);
-    expect(calcCodeSize("print(1)", "swift")).toBe(8);
+    expect(calcCodeSize("<?php echo 1;")).toBe(6);
+    expect(calcCodeSize("<?php\necho 1;\n?>")).toBe(6);
   });
 });
