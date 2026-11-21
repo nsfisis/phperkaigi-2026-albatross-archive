@@ -1,55 +1,41 @@
-import createClient from "openapi-fetch";
 import { API_BASE_PATH } from "../config";
-import type { paths } from "./schema";
+import type { components } from "./schema";
 
-const apiOrigin =
-  import.meta.env.VITE_API_BASE_URL ??
-  (import.meta.env.DEV ? "http://localhost:8007" : "");
+// The API responses are archived as static JSON files (see /archive.sh).
 
-const client = createClient<paths>({
-  baseUrl: `${apiOrigin}${API_BASE_PATH}`,
-  credentials: "include",
-});
+type Schemas = components["schemas"];
 
-class AuthenticatedApiClient {
-  async getGames() {
-    const { data, error } = await client.GET("/games");
-    if (error) throw new Error(error.message);
-    return data;
+async function fetchJson<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_BASE_PATH}${path}`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${path}: ${res.status}`);
+  }
+  return (await res.json()) as T;
+}
+
+class ApiClient {
+  getGames() {
+    return fetchJson<{ games: Schemas["Game"][] }>("games.json");
   }
 
-  async getGame(gameId: number) {
-    const { data, error } = await client.GET("/games/{game_id}", {
-      params: {
-        path: { game_id: gameId },
-      },
-    });
-    if (error) throw new Error(error.message);
-    return data;
+  getGame(gameId: number) {
+    return fetchJson<{ game: Schemas["Game"] }>(`games/${gameId}.json`);
   }
 
-  async getGameWatchRanking(gameId: number) {
-    const { data, error } = await client.GET("/games/{game_id}/watch/ranking", {
-      params: {
-        path: { game_id: gameId },
-      },
-    });
-    if (error) throw new Error(error.message);
-    return data;
+  getGameWatchRanking(gameId: number) {
+    return fetchJson<{ ranking: Schemas["RankingEntry"][] }>(
+      `games/${gameId}/watch/ranking.json`,
+    );
   }
 
-  async getTournament(tournamentId: number) {
-    const { data, error } = await client.GET("/tournaments/{tournament_id}", {
-      params: {
-        path: { tournament_id: tournamentId },
-      },
-    });
-    if (error) throw new Error(error.message);
-    return data;
+  getTournament(tournamentId: number) {
+    return fetchJson<{ tournament: Schemas["Tournament"] }>(
+      `tournaments/${tournamentId}.json`,
+    );
   }
 }
 
-const apiClient = new AuthenticatedApiClient();
+const apiClient = new ApiClient();
 
 export function createApiClient() {
   return apiClient;
