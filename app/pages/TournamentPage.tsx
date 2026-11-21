@@ -256,9 +256,6 @@ function TournamentBracket({ tournament }: { tournament: Tournament }) {
   return <div className="flex flex-col gap-0">{rows}</div>;
 }
 
-// Exported for testing as standardBracketSeedsForTest
-export { standardBracketSeeds as standardBracketSeedsForTest };
-
 function standardBracketSeeds(bracketSize: number): number[] {
   const seeds = new Array<number>(bracketSize).fill(0);
   seeds[0] = 1;
