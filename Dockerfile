@@ -1,7 +1,5 @@
 FROM node:22.14 AS builder
 
-ARG ALBATROSS_BASE_PATH
-
 WORKDIR /app
 ENV NODE_ENV=production
 
@@ -11,7 +9,6 @@ RUN npm ci --include=dev
 COPY index.html tsconfig.json vite.config.ts ./
 COPY app/ app/
 COPY public/ public/
-ENV ALBATROSS_BASE_PATH="$ALBATROSS_BASE_PATH"
 RUN npm run build
 
 ################################################################################

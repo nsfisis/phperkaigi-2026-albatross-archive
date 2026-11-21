@@ -50,6 +50,6 @@ function serveArchives(): Plugin {
 }
 
 export default defineConfig({
-  base: process.env.ALBATROSS_BASE_PATH || "/",
+  base: "/phperkaigi/2026/code-battle/",
   plugins: [tailwindcss(), react(), tsconfigPaths(), serveArchives()],
 });
